@@ -2,15 +2,15 @@ package com.example.Spring.Session1.DTO;
 
 public class ProductDTO {
     private boolean inStock;
-    private int salePrice;
+    private Double salePrice;
     private String description;
-    private String title;
+    private String name;
 
     public void setInStock(boolean inStock) {
         this.inStock = inStock;
     }
 
-    public void setSalePrice(int salePrice) {
+    public void setSalePrice(Double salePrice) {
         this.salePrice = salePrice;
     }
 
@@ -18,11 +18,11 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String name) {
+        this.name = name;
     }
 
-    public int getSalePrice() {
+    public Double getSalePrice() {
         return salePrice;
     }
 
@@ -31,7 +31,7 @@ public class ProductDTO {
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public String getDescription() {
