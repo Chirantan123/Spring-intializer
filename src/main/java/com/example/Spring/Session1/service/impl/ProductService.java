@@ -19,8 +19,11 @@ public class ProductService implements ProductInterface {
     public ResponseDTO searchProducts(RequestDTO r)
     {
         Map<String, Object> productResponse = searchClient.getProducts(r.getSearchTerm());
+        Map<String,Object>  productResponse1 = searchClient.getProducts("stockLocation:\""+r.getLocationBaseProducts()+"\"");
         List<Map<String, Object>> products = (List<Map<String, Object>>) ((Map<String, Object>) productResponse.get("response")).get("docs");
+        List<Map<String, Object>> products1 = (List<Map<String, Object>>) ((Map<String, Object>) productResponse1.get("response")).get("docs");
         ArrayList<ProductDTO> a = new ArrayList<>();
+        ArrayList<ProductDTO> a1 = new ArrayList<>();
         for (Map<String, Object> product: products) {
             ProductDTO productDTO = new ProductDTO();
             productDTO.setDescription((String) product.get("description"));
@@ -35,10 +38,23 @@ public class ProductService implements ProductInterface {
             // create list of ProductDTO and add there
             a.add(productDTO);
         }
+        for(Map<String,Object> product:products1)
+        {
+            ProductDTO productDTO1 = new ProductDTO();
+            productDTO1.setDescription((String)product.get("description"));
+            productDTO1.setTitle((String)product.get("name"));
+            int c = (int)product.get("isInStock");
+            if(c==1)
+            productDTO1.setInStock(true);
+            else
+            productDTO1.setInStock(false);
+            a1.add(productDTO1);
+        }
         ResponseDTO responseDTO = new ResponseDTO();
 
         // setter your list products
         responseDTO.setProducts(a);
+        responseDTO.setLocationBaseProducts(a1);
         return responseDTO;
     }
 
