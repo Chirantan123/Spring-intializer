@@ -69,11 +69,11 @@ public class ProductService implements ProductInterface {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         ArrayList<ProductDTO> a1;
         Runnable runnableTask = () -> {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            //try {
+              //  Thread.sleep(1000);
+            //} catch (InterruptedException e) {
+              //  e.printStackTrace();
+            //}
             System.out.println(Thread.currentThread().getName());
                 responseDTO.setProducts(getSearchResponse(r));
         };
@@ -144,3 +144,4 @@ public class ProductService implements ProductInterface {
 
 
 }
+
